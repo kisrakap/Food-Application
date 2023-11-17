@@ -1,4 +1,4 @@
-# cmlabs-frontend-fulltime-test
+# Food Application
 
 ## Project setup
 ```
