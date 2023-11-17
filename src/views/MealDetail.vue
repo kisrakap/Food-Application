@@ -1,7 +1,12 @@
 <template>
   <div class="container border rounded">
     <div class="row justify-content-center">
-      <div class="col-sm-12 p-5">
+      <div v-if="loading" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div v-else class="col-sm-12 p-5">
         <div class="row">
             <div class="text-start"> 
               <h1 class="text-start p-4">{{meal.strMeal}}</h1>
@@ -47,7 +52,8 @@ export default {
     return {
       meal: {},
       filteredArr : [],
-      paragraph : []
+      paragraph : [],
+      loading : false
     }
   },
   created() {
@@ -55,6 +61,7 @@ export default {
     axios.get(`https://www.themealdb.com/api/json/v2/1/lookup.php?i=${mealId}`)
       .then(resp => {
         console.log(resp.data)
+        this.loading = true
         this.meal = resp.data.meals[0]
         for (let i = 1; i <= 20; i++) {
             const ingredient = this.meal[`strIngredient${i}`];
@@ -63,10 +70,13 @@ export default {
             this.filteredArr.push(`${measure} ${ingredient}`)
           }
           this.paragraph= this.meal.strInstructions.split('. ')
-      }
+          this.loading = false
+      } 
+
       })
       .catch(error => {
         console.error(error)
+        this.loading = false
       })
   },
 }
