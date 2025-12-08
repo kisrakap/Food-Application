@@ -24,22 +24,27 @@
       <div
         v-else
         class="col-sm-3 mb-4"
-        v-for="card in meals"
+        v-for="card in paginatedMeals"
         :key="card.idIngredient"
       >
-        <div class="card" style="height: 9rem">
-          <div class="card-img-overlay my-auto border-0 py-5 px-5 align-items-center">
-            <h3 class="card-title">
+        <div class="card" style="height: 30rem">
+          <div class="my-auto border-0 py-5 px-5 align-items-center">
+            <div
+              class="card-img-bg"
+              :style="{ backgroundImage: `url(${card.strThumb})` }"
+            ></div>
+
+            <h1 class="card-title text-bold">
               <router-link
                 :to="{
                   name: 'meals',
                   params: { id: card.strIngredient || '1' },
                 }"
-                class="text-dark text-decoration-none fw-bold"
+                class="text-darks text-decoration-none fw-bold"
               >
                 {{ card.strIngredient }}
               </router-link>
-            </h3>
+            </h1>
           </div>
         </div>
       </div>
@@ -92,12 +97,13 @@ export default {
     meals() {
       return this.$store.state.ings;
     },
-    loading() {
-      return this.$store.state.loading;
+    paginatedMeals() {
+      const start = (this.currentPage - 1) * this.cardsPerPage;
+      const end = start + this.cardsPerPage;
+      return this.meals.slice(start, end);
     },
     totalPages() {
-      const totalCards = this.meals.length;
-      return Math.ceil(totalCards / this.cardsPerPage);
+      return Math.ceil(this.meals.length / this.cardsPerPage);
     },
   },
   created() {
@@ -133,7 +139,27 @@ export default {
 .card {
   border: none;
 }
+.card-img-bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
 
+.card-title {
+  position: relative;
+  z-index: 2;
+  color: #000 !important; /* hitam pekat */
+}
+.card-title a {
+  color: #000 !important;
+}
 .bggray {
   background-color: #262a2e;
 }

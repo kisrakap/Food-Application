@@ -37,7 +37,7 @@
               <div
                 class="card-body card-img-overlay d-flex align-items-center text-decoration-none"
               >
-                <h5 class="card-title text-dark text-decoration-none fw-bold">
+                <h5 class="card-title text-darks item-center text-bold fw-bold">
                   {{ card.strMeal }}
                 </h5>
               </div>
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
