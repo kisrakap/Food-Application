@@ -37,7 +37,7 @@
               <div
                 class="card-body card-img-overlay d-flex align-items-center text-decoration-none"
               >
-                <h5 class="card-title text-light text-decoration-none fw-bold">
+                <h5 class="card-title text-dark text-decoration-none fw-bold">
                   {{ card.strMeal }}
                 </h5>
               </div>
