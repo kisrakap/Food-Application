@@ -1,5 +1,5 @@
 {
-  "name": "cmlabs-frontend-fulltime-test",
+  "name": "food-application",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -42,6 +42,6 @@
   "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kisrakap/cmlabs-frontend-fulltime-test.git"
+    "url": "git+https://github.com/kisrakap/Food-Application.git"
   }
 }
